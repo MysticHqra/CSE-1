@@ -1,8 +1,12 @@
 import java.util.Scanner;
+
 //Made by MysticHqra
 class Student {
     int id;
     String name;
+    String[] course_id;
+    String[] course_name;
+    int[] course_credits;
 
     Student() {
     }
@@ -23,9 +27,9 @@ class Student {
             n = sc.nextInt();
         }
         while (n < 2);
-        course.course_id = new String[n];
-        course.course_name = new String[n];
-        course.course_credits = new int[n];
+        course_id = new String[n];
+        course_name = new String[n];
+        course_credits = new int[n];
         for (int i = 0; i < n; i++) {
             Scanner sc2 = new Scanner(System.in);
             int ind = 0;
@@ -37,10 +41,10 @@ class Student {
                     if (course_id.equalsIgnoreCase(Course.courses[j])) {
                         flag = true;
                         ind = j;
-                        course.course_id[i] = Course.courses[j];
-                        course.course_name[i] = Course.courses_names[j];
-                        course.course_credits[i] = Course.credits[j];
-                        System.out.println("Course name: " + Course.courses_names[j]+", Credits: "+Course.credits[j]);
+                        this.course_id[i] = Course.courses[j];
+                        course_name[i] = Course.courses_names[j];
+                        course_credits[i] = Course.credits[j];
+                        System.out.println("Course name: " + Course.courses_names[j] + ", Credits: " + Course.credits[j]);
                         System.out.println("COURSE SUCCESSFULLY REGISTERED!");
                     }
                 }
@@ -48,9 +52,15 @@ class Student {
             }
             while (!flag);
 
-            course.course_id[i] = Course.courses[ind];
-            course.course_name[i] = Course.courses_names[ind];
+            course_id[i] = Course.courses[ind];
+            course_name[i] = Course.courses_names[ind];
 
+        }
+    }
+
+    void Display() {
+        for (int i = 0; i < course_id.length; i++) {
+            System.out.println(id + "\t\t\t\t" + name + "\t\t\t\t" + course_id[i] + "\t\t\t\t" + course_name[i] + "\t\t\t\t\t" + course_credits[i]);
         }
     }
 }
@@ -118,25 +128,26 @@ class Doctoral extends Graduate {
 public class TestStudent {
     public static void main(String[] args) {
         Course course = new Course();
+
         Fresher o1 = new Fresher(course);
-        /*Sophomore o2 = new Sophomore(course);
+        Sophomore o2 = new Sophomore(course);
         Junior o3 = new Junior(course);
         Senior o4 = new Senior(course);
         Master o5 = new Master(course);
-        Doctoral o6 = new Doctoral(course);*/
-
+        Doctoral o6 = new Doctoral(course);
         System.out.println("Student Id:\t\tStudent Name:\t\tCourse Id:\t\tCourse Name:\t\tCourse Credits: ");
-        for(int i=0; i<course.course_id.length; i++) {
-            System.out.println(o1.id+"\t\t\t\t"+o1.name+"\t\t\t\t"+course.course_id[i]+"\t\t\t\t"+course.course_name[i]+"\t\t\t\t\t"+course.course_credits[i]);
-        }
+        o1.Display();
+        o2.Display();
+        o3.Display();
+        o4.Display();
+        o5.Display();
+        o6.Display();
+
     }
 
 }
 
 class Course {
-    String[] course_id;
-    String[] course_name;
-    int[] course_credits;
     static int[] credits = {4, 3, 4, 4, 4, 4, 4, 4, 4, 3};
     static String[] courses = {"MAT1001", "ENG1001", "PHY1008", "CHEM1002",
             "CSE1012", "ECE1001", "CSE2005", "ECE2001", "MAT1002", "ENG2001"};
