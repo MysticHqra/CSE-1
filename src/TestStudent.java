@@ -35,7 +35,6 @@ class Student {
         course_credits = new int[n];
         for (int i = 0; i < n; i++) {
             Scanner sc2 = new Scanner(System.in);
-            int ind = 0;
             System.out.print("Input course id: ");
             boolean flag = false;
             do {
@@ -43,20 +42,17 @@ class Student {
                 for (int j = 0; j < Course.courses.length; j++) {
                     if (course_id.equalsIgnoreCase(Course.courses[j])) {
                         flag = true;
-                        ind = j;
                         this.course_id[i] = Course.courses[j];
                         course_name[i] = Course.courses_names[j];
                         course_credits[i] = Course.credits[j];
                         System.out.println("Course name: " + Course.courses_names[j] + ", Credits: " + Course.credits[j]);
                         System.out.println("COURSE SUCCESSFULLY REGISTERED!");
+                        break;
                     }
                 }
                 if (!flag) System.out.println("Course not found, enter again!");
             }
             while (!flag);
-
-            course_id[i] = Course.courses[ind];
-            course_name[i] = Course.courses_names[ind];
 
         }
     }
