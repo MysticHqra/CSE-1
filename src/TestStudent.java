@@ -1,6 +1,8 @@
 import java.util.Scanner;
-
-//Made by MysticHqra
+/*
+* Made with <3 by MysticHqra
+* Course registration project v1.1
+ */
 class Student {
     int id;
     String name;
@@ -12,6 +14,7 @@ class Student {
     }
 
     Student(Course course) {
+        System.out.println("[!] Inputting for "+getClass()+" [!]");
         Scanner sc = new Scanner(System.in);
         System.out.print("Input student id: ");
         id = sc.nextInt();
